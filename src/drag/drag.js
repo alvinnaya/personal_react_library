@@ -1,7 +1,7 @@
 
 import React, {  useEffect, useRef, useState } from 'react';
 
-const Drag = ({id,setX,setY,children,inside = true,horizontal = true,vertical = true, X,Y, setGlobalX,setGlobalY}) =>{
+const Drag = ({id,getX,getY,children,inside = true,horizontal = true,vertical = true, X,Y, getGlobalX,getGlobalY}) =>{
 
 
     const currentMouseX = useRef(null);
@@ -16,21 +16,21 @@ const Drag = ({id,setX,setY,children,inside = true,horizontal = true,vertical = 
 
 
     const setXpos = (X)=>{
-      console.log(setX)
+      
       setLeft(X)
-      if(setX == null || setX == undefined){
-        console.log(X)
+      if(getX == null || getX == undefined){
+  
       }else{
-        setX(X)
+        getX(X)
       }
     }
 
     const setYpos = (Y)=>{
       setTop(Y)
-      if(setY == null || setY == undefined){
+      if(getY == null || getY == undefined){
         console.log(Y)
       }else{
-        setY(Y)
+        getY(Y)
       }
     }
 
@@ -79,12 +79,12 @@ const Drag = ({id,setX,setY,children,inside = true,horizontal = true,vertical = 
           const yPercent = (ComponentOffsetY / containerRect.height) * 100;
 
 
-          if(setGlobalX !== null && setGlobalX !== undefined){
-            setGlobalX(componentRef.current.offsetLeft)
+          if(getGlobalX !== null && getGlobalX !== undefined){
+            getGlobalX(componentRef.current.offsetLeft)
           } 
 
-          if(setGlobalY !== null && setGlobalY !== undefined){
-            setGlobalY(componentRef.current.offsetTop)
+          if(getGlobalY !== null && getGlobalY !== undefined){
+            getGlobalY(componentRef.current.offsetTop)
           } 
 
           if(inside){
@@ -150,7 +150,7 @@ console.log("X", lengthX )
     return (
       
         <>
-        <div ref={componentRef} style={{top:`${Y == undefined? top:0}%`, left:`${X == undefined? left:0}%`, position:'absolute',width: 'maxContent'}}  onMouseDown ={ (e) =>{handleMouseDown(e) }} >
+        <div ref={componentRef} style={{top:`${Y == undefined? top:Y}%`, left:`${X == undefined? left:X}%`, position:'absolute',width: 'maxContent'}}  onMouseDown ={ (e) =>{handleMouseDown(e) }} >
         {children}
         </div>
         </>

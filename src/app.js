@@ -6,6 +6,8 @@ import {ColorEditor,HueColor,ColorSelect,ColorPreview} from "color-editor-anp";
 const App = () =>{
     const [state, setState] = useState(0)
     const [hsl, setHsl] = useState({h: 0, s: 0, l: 0});
+    const [x, setX] = useState(0)
+    const [y,setY] = useState(0)
     return (
         <>
 
@@ -33,7 +35,7 @@ const App = () =>{
 
         <div className="bg-slate-700" style={{ width:"800px", height:"800px"}}>
 <div id="container00" style={{with:"100%",height:"100%", position:"relative"}}>
-    <Drag id={"container00"} inside={false}>
+    <Drag X={x} Y={y} getX={setX} getY={setY}  id={"container00"} inside={true}>
     
     <div style={{backgroundColor:"black",width:"40px",height:"40px"}}>
 

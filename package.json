@@ -8,7 +8,7 @@
 
   "scripts": {
     "start": "webpack-dev-server . -w",
-    "build": "webpack .",
+    "build": "webpack . ",
     "build-lib": "rollup -c"
   },
   
